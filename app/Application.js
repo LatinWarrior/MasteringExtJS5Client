@@ -3,10 +3,35 @@
  * Ext.application(). This is the ideal place to handle application launch and initialization
  * details.
  */
+
+// Load country locale stuff here before we do anything else.
+function loadLocale() {
+    var lang = localStorage ? (localStorage.getItem('user-lang') || 'en') : 'en',
+        extJsFile = Ext.util.Format.format("resources/locale/{0}.js", lang);
+    //extJsFile = Ext.util.Format.format("ext/packages/ext-locale/build/ext-locale-{0}.js", lang);
+
+    //Ext.Loader.loadScript({url: file, onError: function(){
+    //    alert('Error loading locale file. Please contact system administrator.');
+    //}});
+
+    Ext.Loader.loadScript({
+        url: extJsFile, onError: function () {
+            alert('Error loading locale file. Please contact system administrator.');
+        }
+    });
+}
+
+loadLocale();
+
 Ext.define('Packt.Application', {
     extend: 'Ext.app.Application',
-    
+
     name: 'Packt',
+
+    controllers: [
+        //'Root',
+        'Menu'
+    ],
 
     stores: [
         // TODO: add global / shared stores here
@@ -17,7 +42,7 @@ Ext.define('Packt.Application', {
     ],
 
     enableQuickTips: true,
-    
+
     launch: function () {
         // TODO - Launch the application
 
@@ -25,18 +50,18 @@ Ext.define('Packt.Application', {
 
         var me = this;
 
-        var task = new Ext.util.DelayedTask(function(){
+        var task = new Ext.util.DelayedTask(function () {
 
             // Fade out the body mask
             me.splashscreen.fadeOut({
                 duration: 1000,
-                remove:true
+                remove: true
             });
 
             // Fade out the icon and message
             me.splashscreen.next().fadeOut({
                 duration: 1000,
-                remove:true,
+                remove: true,
                 listeners: {
                     afteranimate: function (el, startTime, eOpts) {
                         //console.log('launch');
@@ -52,7 +77,7 @@ Ext.define('Packt.Application', {
         task.delay(2000);
     },
 
-    init: function(){
+    init: function () {
         var me = this;
         // Start the mask on the body and get a reference to the mask
         me.splashscreen = Ext.getBody().mask('Loading application', 'splashscreen');
@@ -61,7 +86,7 @@ Ext.define('Packt.Application', {
         me.splashscreen.addCls('splashscreen');
 
         // Insert a new div before the loading icon where we can place our logo.
-        Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0],{
+        Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
             cls: 'x-splash-icon'
         });
     }

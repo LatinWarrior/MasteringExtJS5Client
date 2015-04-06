@@ -2,14 +2,24 @@
  * Created by luis_blanco on 3/29/2015.
  */
 Ext.define('Packt.view.login.LoginController', {
+
     extend: 'Ext.app.ViewController',
+
     alias: 'controller.login',
-    requires: ['Packt.view.main.Main', 'Packt.view.login.CapsLockTooltip', 'Packt.util.Util'],
+
+    requires: [
+        'Packt.view.main.Main',
+        'Packt.view.login.CapsLockTooltip',
+        'Packt.util.Util',
+        'Packt.util.SessionMonitor'
+    ],
+
     onTextFieldSpecialKey: function (field, e, options) {
         if (e.getKey() === e.ENTER) {
             this.doLogin();
         }
     },
+
     onTextFieldKeyPress: function (field, e, options) {
 
         var charCode = e.getCharCode(),
@@ -27,11 +37,13 @@ Ext.define('Packt.view.login.LoginController', {
             }
         }
     },
+
     onButtonClickCancel: function (button, e, options) {
         //console.log('login cancel');
         var me = this;
         me.lookupReference('form').reset();
     },
+
     onButtonClickSubmit: function (button, e, options) {
         var me = this;
 
@@ -40,6 +52,7 @@ Ext.define('Packt.view.login.LoginController', {
         }
         //console.log('login submit');
     },
+
     doLogin: function () {
 
         var me = this,
@@ -56,6 +69,7 @@ Ext.define('Packt.view.login.LoginController', {
         });
 
     },
+
     onLoginFailure: function (form, action) {
 
         this.getView().unmask();
@@ -78,11 +92,13 @@ Ext.define('Packt.view.login.LoginController', {
                 break;
         }
     },
+
     onLoginSuccess: function (form, action) {
         this.getView().unmask();
         this.getView().close();
         console.log('Success');
         //debugger;
         Ext.create('Packt.view.main.Main');
+        Packt.util.SessionMonitor.start();
     }
 });

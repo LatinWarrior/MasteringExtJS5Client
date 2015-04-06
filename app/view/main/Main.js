@@ -8,9 +8,15 @@
 Ext.define('Packt.view.main.Main', {
     extend: 'Ext.container.Container',
     requires: [
+        'Packt.view.main.Header',
+        'Packt.view.main.Footer',
+        'Packt.view.main.Panel',
         'Packt.view.main.MainController',
-        'Packt.view.main.MainModel'
+        'Packt.view.main.MainModel',
+        'Packt.view.menu.Accordion'
     ],
+
+    plugins: 'viewport',
 
     xtype: 'app-main',
     
@@ -24,24 +30,38 @@ Ext.define('Packt.view.main.Main', {
     },
 
     items: [{
-        xtype: 'panel',
-        bind: {
-            title: '{name}'
-        },
-        region: 'west',
-        html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
-        width: 250,
-        split: true,
-        tbar: [{
-            text: 'Button',
-            handler: 'onClickButton'
-        }]
-    },{
         region: 'center',
-        xtype: 'tabpanel',
-        items:[{
-            title: 'Tab 1',
-            html: '<h2>Content appropriate for the current navigation.</h2>'
-        }]
+        xtype: 'mainpanel'
+    },{
+        xtype: 'appheader',
+        region: 'north'
+    },{
+        xtype: 'appfooter',
+        region: 'south'
+    },{
+        xtype: 'mainmenu',
+        region: 'west'
     }]
+
+    //items: [{
+    //    xtype: 'panel',
+    //    bind: {
+    //        title: '{name}'
+    //    },
+    //    region: 'west',
+    //    html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
+    //    width: 250,
+    //    split: true,
+    //    tbar: [{
+    //        text: 'Button',
+    //        handler: 'onClickButton'
+    //    }]
+    //},{
+    //    region: 'center',
+    //    xtype: 'tabpanel',
+    //    items:[{
+    //        title: 'Tab 1',
+    //        html: '<h2>Content appropriate for the current navigation.</h2>'
+    //    }]
+    //}]
 });

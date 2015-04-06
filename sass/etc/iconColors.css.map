@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGA,QAAQ;EACN,KAAK,EAHgB,OAAiB;;AAMxC,WAAW;EACT,KAAK,EARmB,IAAI",
+"sources": ["iconColors.scss"],
+"names": [],
+"file": "iconColors.css"
+}

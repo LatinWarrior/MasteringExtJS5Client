@@ -9,10 +9,38 @@ Ext.define('Packt.view.main.MainController', {
     extend: 'Ext.app.ViewController',
 
     requires: [
-        'Ext.window.MessageBox'
+        'Ext.window.MessageBox',
+        'Packt.util.Util'
     ],
 
     alias: 'controller.main',
+
+    onLogout: function (button, e, options) {
+
+        var me = this;
+
+        Ext.Ajax.request({
+            url: 'http://localhost:10108/api/authentication/logout',
+            scope: me,
+            success: 'onLogoutSuccess',
+            failure: 'onLogoutFailure'
+        });
+    },
+
+    onLogoutSuccess: function (conn, response, options, eOpts) {
+        var result = Packt.util.Util.decodeJSON(conn.responseText);
+
+        if (result.success) {
+            this.getView().destroy();
+            window.location.reload();
+        } else {
+            Packt.util.Util.showErrorMsg(result.msg);
+        }
+    },
+
+    onLogoutFailure: function (conn, response, options, eOpts) {
+        Packt.util.Util.showErrorMsg(conn.responseText);
+    },
 
     onClickButton: function () {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
