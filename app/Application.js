@@ -24,9 +24,14 @@ function loadLocale() {
 loadLocale();
 
 Ext.define('Packt.Application', {
+
     extend: 'Ext.app.Application',
 
     name: 'Packt',
+
+    requires: [
+        'Packt.overrides.tree.ColumnOverride'
+    ],
 
     controllers: [
         //'Root',
@@ -43,10 +48,14 @@ Ext.define('Packt.Application', {
 
     enableQuickTips: true,
 
+    glyphFontFamily: 'FontAwesome',
+
     launch: function () {
         // TODO - Launch the application
 
         //Ext.tip.QuickTipManager.init();
+
+        console.log('In launch function of Application.js');
 
         var me = this;
 

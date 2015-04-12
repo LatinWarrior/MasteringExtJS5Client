@@ -63,7 +63,7 @@ Ext.define('Packt.view.login.Login', {
         items: [{
             xtype: 'translation'
         },{
-            xtype: 'tbfill',
+            xtype: 'tbfill'
         }, {
             xtype: 'button',
             iconCls: 'fa fa-times fa-lg',

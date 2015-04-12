@@ -13,5 +13,6 @@ translations = {
     capsLockMsg2: 'introduzca su contraseña de forma incorrecta.',
     capsLockMsg3: 'Usted debe presionar Bloq Mayús para apagarlo ',
     capsLockMsg4: 'antes de escribir la contraseña.',
-    menu: 'menu'
+    menu: 'menu',
+    home: 'Inicio'
 };

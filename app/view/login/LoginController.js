@@ -11,7 +11,8 @@ Ext.define('Packt.view.login.LoginController', {
         'Packt.view.main.Main',
         'Packt.view.login.CapsLockTooltip',
         'Packt.util.Util',
-        'Packt.util.SessionMonitor'
+        'Packt.util.SessionMonitor',
+        'Packt.util.Fonts'
     ],
 
     onTextFieldSpecialKey: function (field, e, options) {

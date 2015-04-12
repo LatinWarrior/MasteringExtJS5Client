@@ -13,6 +13,6 @@ translations = {
     capsLockMsg2: 'com que você digite a senha incorretamente.',
     capsLockMsg3: 'Você deve pressionar a tecla Caps lock para ',
     capsLockMsg4: 'desativá-la antes de digitar a senha.',
-    menu: 'menu'
-
+    menu: 'menu',
+    home: 'Início'
 };
